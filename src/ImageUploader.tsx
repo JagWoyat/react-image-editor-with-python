@@ -2,9 +2,10 @@ import { useState } from "react";
 
 type Props = {
   title: string;
+  path: any;
 };
 
-export default function ImageUploader({ title }: Props) {
+export default function ImageUploader({ title, path }: Props) {
   const [image, setImage] = useState<File>();
 
   const onFileChange = (event: any) => {
@@ -30,9 +31,7 @@ export default function ImageUploader({ title }: Props) {
       .then((response) => response.text()) // Extract the response as text
       .then((responseText) => {
         // Handle the response string
-        sessionStorage.setItem("path", responseText);
-        console.log("Submitted successfully");
-        window.location.reload();
+        path(responseText);
       })
       .catch((error) => console.log("Form submit error", error));
   };

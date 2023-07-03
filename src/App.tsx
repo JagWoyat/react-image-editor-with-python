@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 import ImageUploader from "./ImageUploader";
-import axios from "axios";
+// import axios from "axios";
 
 function App() {
   const [path, setPath] = useState<any>("");
-  const [image, setImage] = useState<any>();
+
+  let navigate = useNavigate();
 
   useEffect(() => {
-    let img = sessionStorage.getItem("path");
-    setPath(img);
-    axios.get("http://localhost:4000/output/" + path).then((res) => {
-      setImage(res.config.url);
-      sessionStorage.removeItem("path");
-    });
-  });
+    if (!path) return;
+    navigate("/response/" + path.slice(0, -4));
+  }, [path]);
 
   return (
     <>
       <div>
-        <ImageUploader title="Upload image" />
-        <img src={image} alt="Shrek" />
+        <ImageUploader path={setPath} title="Upload image" />
       </div>
     </>
   );
