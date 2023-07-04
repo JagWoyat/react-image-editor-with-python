@@ -3,9 +3,10 @@ import { useState } from "react";
 type Props = {
   title: string;
   path: any;
+  request: any;
 };
 
-export default function ImageUploader({ title, path }: Props) {
+export default function ImageUploader({ title, path, request }: Props) {
   const [image, setImage] = useState<File>();
 
   const onFileChange = (event: any) => {
@@ -27,13 +28,17 @@ export default function ImageUploader({ title, path }: Props) {
       method: "POST",
       body: formData,
     };
+    request("loading");
     fetch(url, requestOptions)
       .then((response) => response.text()) // Extract the response as text
       .then((responseText) => {
-        // Handle the response string
+        request("done");
         path(responseText);
       })
-      .catch((error) => console.log("Form submit error", error));
+      .catch((error) => {
+        request("error");
+        console.log("Form submit error", error);
+      });
   };
 
   return (

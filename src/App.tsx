@@ -6,6 +6,7 @@ import ImageUploader from "./ImageUploader";
 
 function App() {
   const [path, setPath] = useState<any>("");
+  const [requestState, setRequestState] = useState<any>("");
 
   let navigate = useNavigate();
 
@@ -17,7 +18,12 @@ function App() {
   return (
     <>
       <div>
-        <ImageUploader path={setPath} title="Upload image" />
+        <ImageUploader
+          path={setPath}
+          title="Upload image"
+          request={setRequestState}
+        />
+        {requestState === "loading" && <h3>Loading...</h3>}
       </div>
     </>
   );

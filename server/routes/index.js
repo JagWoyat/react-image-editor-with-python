@@ -64,16 +64,16 @@ router.post("/upload", upload.any(), function (req, res, err) {
 
   python.on("close", (code) => {
     console.log(`child process close all stdio with code ${code}`);
-    res.send("M_" + req.files[0].filename);
+    // res.send("M_" + req.files[0].filename);
   });
 
   if (!req.files) {
     res.status(500);
     return err;
   }
-  // const timeout = setTimeout(() => {
-
-  // }, 300000);
+  const timeout = setTimeout(() => {
+    res.send("M_" + req.files[0].filename);
+  }, 3000);
 
   // clearTimeout(timeout);
 });
