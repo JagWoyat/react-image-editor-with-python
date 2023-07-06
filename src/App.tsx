@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     if (!path) return;
-    navigate("/response/" + path.slice(0, -4));
+    navigate("/response/" + path);
   }, [path]);
 
   return (

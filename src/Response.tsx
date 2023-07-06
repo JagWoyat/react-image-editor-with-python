@@ -9,16 +9,14 @@ export default function Response() {
 
   useEffect(() => {
     console.log(params.filename);
-    axios
-      .get("http://localhost:4000/output/" + params.filename + ".png")
-      .then((res) => {
-        setImage(res.config.url);
-      });
+    axios.get("http://localhost:4000/output/" + params.filename).then((res) => {
+      setImage(res.config.url);
+    });
   }, []);
 
   return (
     <div id="response-page">
-      <img src={image} alt="Shrek" />
+      <img src={image} alt="response image" />
     </div>
   );
 }
