@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import ImageUploader from "./ImageUploader";
-// import axios from "axios";
 
 function App() {
   const [path, setPath] = useState<any>("");

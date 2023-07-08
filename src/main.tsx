@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import ErrorPage from "./ErrorPage.tsx";
 import Response from "./Response.tsx";
+import Navbar from "./components/Navbar/Navbar.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Navbar>
+      <RouterProvider router={router} />
+    </Navbar>
   </React.StrictMode>
 );
