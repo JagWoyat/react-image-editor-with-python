@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
 
 export default function Response() {
   const [image, setImage] = useState<any>();
@@ -24,14 +25,17 @@ export default function Response() {
   };
 
   return (
-    <div className="ResponseWrapper">
-      <img src={image} alt="response image" />
-      <div className="ResponseDiv">
-        <Link to="/">
-          <button>Return</button>
-        </Link>
-        <button onClick={handleDownload}>Download</button>
+    <>
+      <Navbar />
+      <div className="ResponseWrapper Body">
+        <img src={image} alt="response image" />
+        <div className="ResponseDiv">
+          <Link to="/">
+            <button>Return</button>
+          </Link>
+          <button onClick={handleDownload}>Download</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

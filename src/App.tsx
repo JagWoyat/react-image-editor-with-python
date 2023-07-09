@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import ImageUploader from "./ImageUploader";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const [path, setPath] = useState<any>("");
@@ -16,7 +17,8 @@ function App() {
 
   return (
     <>
-      <div>
+      <Navbar />
+      <div className="Body">
         <ImageUploader
           path={setPath}
           title="Upload image"
