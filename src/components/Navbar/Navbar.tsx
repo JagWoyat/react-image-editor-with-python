@@ -9,7 +9,6 @@ const IconStyles = {
   width: "4rem",
   height: "4rem",
   backgroundColor: "transparent",
-  backgroundImage: `url(${icon})`,
 };
 
 const Navbar = ({ children }: any) => {
@@ -18,7 +17,7 @@ const Navbar = ({ children }: any) => {
       <div className={styles.Navbar}>
         <Link to={"/"}>
           <div className={styles.NameWrapper}>
-            <Icon IconStyles={IconStyles} />
+            <Icon IconStyles={IconStyles} icon={icon} />
             <h1>Image Editor</h1>
           </div>
         </Link>
