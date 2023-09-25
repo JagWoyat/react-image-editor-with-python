@@ -1,0 +1,7 @@
+.Wrapper {
+  display: flex;
+  flex-direction: row;
+  background-color: gainsboro;
+  height: 2.5rem;
+  padding: 0.125rem;
+}

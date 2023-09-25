@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Selector from "./components/Selector/Selector";
 
 type Props = {
   title: string;
@@ -6,8 +7,23 @@ type Props = {
   request: any;
 };
 
+type Options = {
+  mirroredVer: boolean;
+  mirroredHor: boolean;
+  cropped: boolean;
+};
+
 export default function ImageUploader({ title, path, request }: Props) {
   const [image, setImage] = useState<File>();
+  const [selectorOptions, setSelectorOptions] = useState<Options>({
+    mirroredVer: false,
+    mirroredHor: false,
+    cropped: false,
+  });
+
+  const updateSelectorOptions = (newOptions: Options) => {
+    setSelectorOptions(newOptions);
+  };
 
   const onFileChange = (event: any) => {
     setImage(event.target.files[0]);
@@ -44,6 +60,10 @@ export default function ImageUploader({ title, path, request }: Props) {
   return (
     <div>
       <h1>{title}</h1>
+      <Selector
+        updateState={updateSelectorOptions}
+        selectorOptions={selectorOptions}
+      />
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={onFileChange} />
         <button type="submit">Upload</button>
