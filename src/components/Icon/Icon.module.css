@@ -1,8 +1,10 @@
 .Button {
-  margin-top: 1.5rem;
-  margin-right: 0.5rem;
-  width: 4rem;
-  height: 4rem;
   background-size: 100%;
+  background-repeat: no-repeat;
   border: none;
+  outline: 0 !important;
 }
+
+/* .Button:hover {
+  border: 1px black solid;
+} */

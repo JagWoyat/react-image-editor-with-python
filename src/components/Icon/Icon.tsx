@@ -1,16 +1,36 @@
-import { Link } from "react-router-dom";
 import styles from "./Icon.module.css";
+import { Link } from "react-router-dom";
 
-export default function Icon({ icon, linkTo }: any) {
+export default function Icon({
+  icon,
+  IconStyles = {},
+  linkTo = "",
+  onClick = () => {},
+}: any) {
+  let Styles = {};
+  if (Object.keys(IconStyles).length === 0) {
+    Styles = { backgroundColor: "transparent" };
+  } else {
+    Styles = IconStyles;
+  }
+  Styles = { ...Styles, backgroundImage: `url(${icon})` };
   return (
-    <Link to={linkTo}>
-      <button
-        style={{
-          backgroundColor: "transparent",
-          backgroundImage: `url(${icon})`,
-        }}
-        className={styles.Button}
-      ></button>
-    </Link>
+    <>
+      {linkTo != "" ? (
+        <Link to={linkTo}>
+          <button
+            style={Styles}
+            className={styles.Button}
+            onClick={onClick}
+          ></button>
+        </Link>
+      ) : (
+        <button
+          style={Styles}
+          className={styles.Button}
+          onClick={onClick}
+        ></button>
+      )}
+    </>
   );
 }

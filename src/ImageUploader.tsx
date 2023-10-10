@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import Selector from "./components/Selector/Selector";
 
 type Props = {
   title: string;
@@ -6,11 +7,38 @@ type Props = {
   request: any;
 };
 
-export default function ImageUploader({ title, path, request }: Props) {
-  const [image, setImage] = useState<File>();
+type Options = {
+  mirroredVer: boolean;
+  mirroredHor: boolean;
+  cropped: boolean;
+};
 
-  const onFileChange = (event: any) => {
-    setImage(event.target.files[0]);
+export default function ImageUploader({ title, path, request }: Props) {
+  const [image, setImage] = useState<File | undefined>();
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [selectorOptions, setSelectorOptions] = useState<Options>({
+    mirroredVer: false,
+    mirroredHor: false,
+    cropped: false,
+  });
+
+  const updateSelectorOptions = (newOptions: Options) => {
+    setSelectorOptions(newOptions);
+  };
+
+  const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      setImage(file);
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setImagePreview(e.target?.result as string);
+      };
+
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = (event: any) => {
@@ -44,8 +72,19 @@ export default function ImageUploader({ title, path, request }: Props) {
   return (
     <div>
       <h1>{title}</h1>
+      {imagePreview && (
+        <img
+          src={imagePreview}
+          alt="SelectedImage"
+          style={{ maxWidth: "45%" }}
+        />
+      )}
+      <Selector
+        updateState={updateSelectorOptions}
+        selectorOptions={selectorOptions}
+      />
       <form onSubmit={handleSubmit}>
-        <input type="file" onChange={onFileChange} />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <button type="submit">Upload</button>
       </form>
     </div>
