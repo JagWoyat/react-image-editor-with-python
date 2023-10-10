@@ -2,4 +2,9 @@
   background-size: 100%;
   background-repeat: no-repeat;
   border: none;
+  outline: 0 !important;
 }
+
+/* .Button:hover {
+  border: 1px black solid;
+} */

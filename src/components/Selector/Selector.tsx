@@ -1,6 +1,6 @@
-import Icon from "../Icon/Icon";
 import icon from "../../img/image-circle-plus-svgrepo-com.svg";
 import styles from "./Selector.module.css";
+import SelectorIcon from "../Icon/SelectorIcon/SelectorIcon";
 
 type Options = {
   mirroredVer: boolean;
@@ -13,41 +13,29 @@ type Props = {
   updateState: (newOptions: Options) => void;
 };
 
-const Selector: React.FC<Props> = ({ selectorOptions, updateState }) => {
-  let optionsTemp: Options = selectorOptions;
-
-  function changeState(name: keyof typeof selectorOptions): void {
-    if (selectorOptions.hasOwnProperty(name)) {
-      optionsTemp[name] = !optionsTemp[name];
-      updateState(optionsTemp);
-      console.log(selectorOptions[name]);
-    } else {
-      console.log(`Property '${name}' does not exist in the object.`);
-    }
-  }
-
-  const IconStyles = {
-    height: "3rem",
-    backgroundColor: "transparent",
-  };
-
+const Selector: React.FC<Props> = ({ selectorOptions, updateState }: Props) => {
   return (
-    <div className={styles.Wrapper}>
-      <Icon
-        IconStyles={IconStyles}
-        icon={icon}
-        onClick={() => changeState("mirroredVer")}
-      />
-      <Icon
-        IconStyles={IconStyles}
-        icon={icon}
-        onClick={() => changeState("mirroredHor")}
-      />
-      <Icon
-        IconStyles={IconStyles}
-        icon={icon}
-        onClick={() => changeState("cropped")}
-      />
+    <div className={styles.Main}>
+      <div className={styles.Wrapper}>
+        <SelectorIcon
+          icon={icon}
+          selectorOptions={selectorOptions}
+          name={"mirroredVer"}
+          updateState={updateState}
+        />
+        <SelectorIcon
+          icon={icon}
+          selectorOptions={selectorOptions}
+          name={"mirroredHor"}
+          updateState={updateState}
+        />
+        <SelectorIcon
+          icon={icon}
+          selectorOptions={selectorOptions}
+          name={"cropped"}
+          updateState={updateState}
+        />
+      </div>
     </div>
   );
 };
