@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
-import ImageUploader from "./ImageUploader";
+import ImageUploader from "./components/ImageUploader/ImageUploader";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
