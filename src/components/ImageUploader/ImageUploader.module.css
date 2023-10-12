@@ -1,0 +1,65 @@
+.Form {
+  height: 16rem;
+  width: 28rem;
+  max-width: 100%;
+  text-align: center;
+  position: relative;
+  color: black;
+}
+
+.Label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  border: 2px dashed #555;
+  background-color: #f8fafc;
+}
+
+.LabelActive {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  border: 2px dashed #555;
+  background-color: #ffffff;
+}
+
+.ActiveDropZone {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.UploadButton {
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  border: none;
+  font-family: "Oswald", sans-serif;
+  background-color: transparent;
+  color: black;
+}
+
+.UploadButton:hover {
+  text-decoration-line: underline;
+}
+
+.RemoveImgButton {
+  position: absolute;
+  color: red;
+  bottom: 95%;
+  left: 95%;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  /* margin: 0; */
+  padding: 0;
+}
